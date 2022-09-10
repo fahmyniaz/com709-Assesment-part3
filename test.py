@@ -29,48 +29,46 @@ try:
 
   """)
 
-    selected_option = int(input())
+    selected_option = int(input('Input a value: '))
     print(f"You have selected option: {selected_option}\n")
 
+
     if selected_option == 1:
-        print("The names of the passengers are...")
+        date = input('Enter Date: ')
         for record in records:
-            passenger_name = record[3]
-            print(f"  {passenger_name}")
+            if date == record[0] and 1 == int(record[1]):
+                print(record[2])
+                break
 
     elif selected_option == 2:
+        # step 1 - Find top ranked songs and number of times they ranked number 1
+        # Step 2 - Find maximum of number of times
+        # Step 3 - Find the corresponding artist of the song
+        artist_count = {}
         for record in records:
-            survival_status = int(record[1])
-            if survival_status == 1:
-                num_survived += 1
-        print(f"{num_survived} passengers survived")
+            if 1 == int(record[1]):
+                if record[3] in artist_count.keys():
+                    count = artist_count[record[3]] + 1
+                    artist_count.update({record[3]:count})
+                else:
+                    artist_count[record[3]] = 1
+
+
+        count_list = list(artist_count.values())
+        count_list.sort(reverse=True)
+        max = count_list[0]
+
+        for artist in artist_count:
+            if artist_count[artist] == max:
+                print(artist)
+                break
+
 
     elif selected_option == 3:
-        females = 0
-        males = 0
-        for record in records:
-            sex = record[4]
-            if sex.lower() == "male":
-                males += 1
-            else:
-                females += 1
-        print(f"females: {females}, males: {males}")
+       pass
 
     elif selected_option == 4:
-        children = adults = elderly = 0
-
-        for record in records:
-            survived = int(record[1])
-            if record[5] != "":
-                age = float(record[5])
-                if age < 18:
-                    children += 1
-                elif age < 65:
-                    adults += 1
-                else:
-                    elderly += 1
-
-        print(f"children: {children}, adults: {adults}, elderly: {elderly}")
+       pass
 
 except IOError:
     print("Could not read the file.")
