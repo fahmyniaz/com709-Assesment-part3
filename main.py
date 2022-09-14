@@ -29,7 +29,7 @@ try:
     print(f"You have selected option: {selected_option}\n")
 
     if selected_option == 1:
-        date = input('Enter Date a (between 2021-11-06 to 1958-08-04 ): ')
+        date = input('Enter a Date (between 2021-11-06 to 1958-08-04 ): ')
         for record in records:
             if date == record[0] and 1 == int(record[1]):
                 print(record[2])
