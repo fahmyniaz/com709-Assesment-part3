@@ -29,7 +29,7 @@ try:
     print(f"You have selected option: {selected_option}\n")
 
     if selected_option == 1:
-        date = input('Enter Date: ')
+        date = input('Enter Date a (between 2021-11-06 to 1958-08-04 ): ')
         for record in records:
             if date == record[0] and 1 == int(record[1]):
                 print(record[2])
@@ -59,25 +59,25 @@ try:
 
 
     elif selected_option == 3:
-        def display_longest_no_weeks_songs():
-            songs = {}
-            for record in records:
-                if record[2] not in songs:
-                    songs[record[2]] = int(record[6])
 
-            weeks = list(songs.values())
-            unique_weeks = list(set(weeks))
-            unique_weeks.sort(reverse=True)
-            n = 1
-            for week in unique_weeks:
-                for song in songs:
-                    if songs[song] == week:
-                        if n == 10:
-                            break
-                        print(song)
-                        n += 1
-                if n == 10:
-                    break
+        songs = {}
+        for record in records:
+            if record[2] not in songs:
+                songs[record[2]] = int(record[6])
+
+        weeks = list(songs.values())
+        unique_weeks = list(set(weeks))
+        unique_weeks.sort(reverse=True)
+        n = 1
+        for week in unique_weeks:
+            for song in songs:
+                if songs[song] == week:
+                    if n == 10:
+                        break
+                    print(song)
+                    n += 1
+            if n == 10:
+                break
 
     elif selected_option == 4:
         songs_peak_rank = {}
